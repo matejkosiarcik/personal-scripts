@@ -1,2 +1,3 @@
-# scripts
-A collection of my scripts
+# Scripts
+
+> Collection of my personal scripts
