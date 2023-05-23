@@ -13,7 +13,7 @@
 
 - link:
     ~/.bin/scripts/photo-exif-rename: scripts/photo-exif-rename.sh
-    ~/.bin/cron/photo-autoimport: cron/photo-autoimport.sh
 
+    ~/.bin/deamons/photo-autoimport: deamons/photo-import/main.sh
     ~/.bin/deamons/screenshots-rename/main.sh: deamons/screenshots-rename/main.sh
     ~/.bin/deamons/screenshots-rename/rename.sh: deamons/screenshots-rename/rename.sh
