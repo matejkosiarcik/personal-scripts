@@ -26,7 +26,7 @@ date="$(printf '%s\n' "$(basename "$file")" | sed -E 's~^Screenshot ([0-9]{4})-(
 new_filename="$date.png"
 
 # Check if the new file already exists (taken screenshots of multiple displays)
-if [ -e "$date 2.png" ] || [ -e "$date 3.png" ] || [ -e "$date 4.png" ] ; then
+if [ -e "$date 2.png" ] || [ -e "$date 3.png" ] || [ -e "$date 4.png" ]; then
     new_filename="$date 1.png"
 fi
 
