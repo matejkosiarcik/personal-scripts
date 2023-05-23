@@ -5,7 +5,7 @@ updates:
     directory: /
     schedule:
       interval: daily
-      time: 02:00
+      time: "02:00"
       timezone: Europe/Bratislava
     reviewers:
       - matejkosiarcik
@@ -17,7 +17,7 @@ updates:
     directory: /
     schedule:
       interval: daily
-      time: 03:00
+      time: "03:00"
       timezone: Europe/Bratislava
     reviewers:
       - matejkosiarcik
@@ -29,7 +29,7 @@ updates:
     directory: /system-dependencies
     schedule:
       interval: daily
-      time: 04:00
+      time: "04:00"
       timezone: Europe/Bratislava
     reviewers:
       - matejkosiarcik
