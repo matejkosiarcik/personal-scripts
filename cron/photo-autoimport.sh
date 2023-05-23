@@ -13,7 +13,7 @@ fi
 # Rename existing files
 tmpfile="$(mktemp)"
 find "$watchdir" -maxdepth 1 -type f \( -iname '*.jpg' -or -iname '*.png' \) -print0 >"$tmpfile"
-cat "$tmpfile" | xargs -0 -n1 photo-exif-rename
+xargs -0 -n1 photo-exif-rename <"$tmpfile"
 rm -f "$tmpfile"
 
 # Watch for changes and rename newly added files
