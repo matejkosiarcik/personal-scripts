@@ -3,16 +3,13 @@
 MAKEFLAGS += --warn-undefined-variables
 SHELL := /bin/sh  # for compatibility (mainly with redhat distros)
 .SHELLFLAGS := -ec
-PROJECT_DIR := $(dir $(abspath $(MAKEFILE_LIST)))
+PROJECT_DIR := $(abspath $(dir $(MAKEFILE_LIST)))
 
 # Set bundle variables to install&use gems in local directory
 export BUNDLE_DISABLE_SHARED_GEMS := true
 export BUNDLE_PATH__SYSTEM := false
 export BUNDLE_PATH := $(PROJECT_DIR)/dependencies/.bundle
 export BUNDLE_GEMFILE := $(PROJECT_DIR)/dependencies/Gemfile
-
-# Modify PATH to access dependency binaries
-export PATH := $(PROJECT_DIR)/venv/bin:$(PATH)
 
 .POSIX:
 
@@ -33,5 +30,13 @@ bootstrap:
 	pip install --requirement requirements.txt
 
 .PHONY: install
-install:
+install: system-setup dotbot
+
+.PHONY: system-setup
+system-setup:
+	sh system-dependencies/system-setup.sh
+
+.PHONY: dotbot
+dotbot: export PATH := $(PROJECT_DIR)/venv/bin:$(PATH)
+dotbot:
 	dotbot -c install.conf.yaml
