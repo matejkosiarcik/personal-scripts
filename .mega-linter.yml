@@ -19,6 +19,7 @@ PYTHON_ISORT_CONFIG_FILE: .config/pyproject.toml
 PYTHON_PYLINT_CONFIG_FILE: .config/pyproject.toml
 RUBY_RUBOCOP_CONFIG_FILE: .config/.rubocop.yml
 YAML_YAMLLINT_CONFIG_FILE: .config/.yamllint.yml
+REPOSITORY_CHECKOV_CONFIG_FILE: .config/.checkov.yml
 
 # Config
 JSON_V8R_FILTER_REGEX_EXCLUDE: composer.json
