@@ -5,7 +5,12 @@ workflows:
   circleci:
     jobs:
       - azlint
-      - build
+      - install:
+          matrix:
+            parameters:
+              image:
+                - debian:11.7
+                - ubuntu:22.04
 
 jobs:
   azlint:
@@ -20,9 +25,12 @@ jobs:
             azlint --only-changed
           fi
 
-  build:
+  install:
+    parameters:
+      image:
+        type: string
     docker:
-      - image: ubuntu:22.04
+      - image: "<< parameters.image >>"
     steps:
       - checkout
       - run: apt-get update && apt-get install --yes python3 python3-pip python3-venv
