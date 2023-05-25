@@ -5,12 +5,6 @@ SHELL := /bin/sh  # for compatibility (mainly with redhat distros)
 .SHELLFLAGS := -ec
 PROJECT_DIR := $(abspath $(dir $(MAKEFILE_LIST)))
 
-# Set bundle variables to install&use gems in local directory
-export BUNDLE_DISABLE_SHARED_GEMS := true
-export BUNDLE_PATH__SYSTEM := false
-export BUNDLE_PATH := $(PROJECT_DIR)/dependencies/.bundle
-export BUNDLE_GEMFILE := $(PROJECT_DIR)/dependencies/Gemfile
-
 .POSIX:
 
 .DEFAULT: all
