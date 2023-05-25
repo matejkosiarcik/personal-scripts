@@ -18,3 +18,11 @@ jobs:
           else
             azlint --only-changed
           fi
+
+  build:
+    docker:
+      - image: ubuntu:22.04
+    steps:
+      - checkout
+      - run: make bootstrap
+      - run: make install
