@@ -22,7 +22,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
           DEFAULT_BRANCH: main
-          LINTER_RULES_PATH: /
+          LINTER_RULES_PATH: .config/
 
           # disable
           VALIDATE_CSS: false
@@ -42,5 +42,5 @@ jobs:
           # PYTHON_FLAKE8_CONFIG_FILE: setup.cfg
           # PYTHON_ISORT_CONFIG_FILE: pyproject.toml
           # PYTHON_PYLINT_CONFIG_FILE: pyproject.toml
-          # RUBY_CONFIG_FILE: .rubocop.yml
+          RUBY_CONFIG_FILE: .rubocop.yml
           YAML_CONFIG_FILE: .yamllint.yml
