@@ -1,21 +1,21 @@
 name: Lint
 
+permissions: read-all
+
 on:
   pull_request:
 
-permissions: read-all
-
 jobs:
   super-linter:
-    name: GitHub Super Linter
+    name: SuperLinter
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout
         uses: actions/checkout@v3.5.2
         with:
           fetch-depth: 0 # Full git history is needed to get a proper list of changed files
 
-      - name: GitHub Super Linter
+      - name: Run SuperLinter
         uses: github/super-linter@v5.0.0
         env:
           # global settings
@@ -38,9 +38,9 @@ jobs:
           # config files
           DOCKERFILE_HADOLINT_FILE_NAME: .hadolint.yaml
           MARKDOWN_CONFIG_FILE: .markdownlint.json
-          # PYTHON_BLACK_CONFIG_FILE: pyproject.toml
-          # PYTHON_FLAKE8_CONFIG_FILE: setup.cfg
-          # PYTHON_ISORT_CONFIG_FILE: pyproject.toml
-          # PYTHON_PYLINT_CONFIG_FILE: pyproject.toml
+          PYTHON_BLACK_CONFIG_FILE: pyproject.toml
+          PYTHON_FLAKE8_CONFIG_FILE: setup.cfg
+          PYTHON_ISORT_CONFIG_FILE: pyproject.toml
+          PYTHON_PYLINT_CONFIG_FILE: pyproject.toml
           RUBY_CONFIG_FILE: .rubocop.yml
           YAML_CONFIG_FILE: .yamllint.yml
