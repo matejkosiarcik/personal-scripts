@@ -28,7 +28,7 @@ install: system-setup dotbot
 
 .PHONY: system-setup
 system-setup:
-	sh system-dependencies/system-setup.sh
+	sh setup/system-dependencies/system-setup.sh
 
 .PHONY: dotbot
 dotbot: export PATH := $(PROJECT_DIR)/venv/bin:$(PATH)

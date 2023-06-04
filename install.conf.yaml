@@ -6,16 +6,26 @@
     clean:
       force: true
 
+- shell:
+    - description: PreSetup
+      command: sh 'setup/pre-setup.sh'
+      stdin: true
+      stdout: true
+
 - clean:
     - "~/.bin/scripts"
     - "~/.bin/cron"
     - "~/.bin/deamons"
 
 - link:
+    # scripts
     ~/.bin/scripts/photo-exif-rename: scripts/photo-exif-rename.sh
 
+    # deamons
     ~/.bin/deamons/photo-autoimport: deamons/photo-import/main.sh
     ~/.bin/deamons/screenshots-rename/main.sh: deamons/screenshots-rename/main.sh
     ~/.bin/deamons/screenshots-rename/rename.sh: deamons/screenshots-rename/rename.sh
     ~/.bin/deamons/screenrecording-rename/main.sh: deamons/screenrecording-rename/main.sh
     ~/.bin/deamons/screenrecording-rename/rename.sh: deamons/screenrecording-rename/rename.sh
+
+    # cron

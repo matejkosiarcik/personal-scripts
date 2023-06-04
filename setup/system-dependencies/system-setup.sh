@@ -6,4 +6,4 @@ if printf '%s\n' "$PATH" | grep venv; then
     exit 1
 fi
 
-pip3 install --requirement system-dependencies/requirements.txt
+pip3 install --requirement "$(dirname "$0")/requirements.txt"
