@@ -6,16 +6,16 @@
     clean:
       force: true
 
-- clean:
-    - "~/.bin/scripts"
-    - "~/.bin/cron"
-    - "~/.bin/deamons"
-
 - shell:
     - description: PreSetup
       command: sh 'setup/pre-setup.sh'
       stdin: true
       stdout: true
+
+- clean:
+    - "~/.bin/scripts"
+    - "~/.bin/cron"
+    - "~/.bin/deamons"
 
 - link:
     # scripts
