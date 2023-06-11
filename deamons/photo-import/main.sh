@@ -2,7 +2,7 @@
 set -euf
 
 cd "$(dirname "$0")"
-PATH="$PATH:/opt/homebrew/bin"
+PATH="$PATH:/opt/homebrew/bin:$(dirname $(dirname "$PWD"))/scripts"
 
 # Set [and create] target directory
 watchdir="$HOME/Pictures/Import"
