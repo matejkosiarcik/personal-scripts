@@ -5,10 +5,11 @@
       force: true
     clean:
       force: true
+      recursive: true
 
 - shell:
     - description: PreSetup
-      command: sh 'setup/pre-setup.sh'
+      command: sh setup/pre-setup.sh
       stdin: true
       stdout: true
 
@@ -22,7 +23,8 @@
     ~/.bin/scripts/photo-exif-rename: scripts/photo-exif-rename.sh
 
     # deamons
-    ~/.bin/deamons/photo-autoimport: deamons/photo-import/main.sh
+    ~/.bin/deamons/main.sh: deamons/main.sh
+    ~/.bin/deamons/photo-import/main.sh: deamons/photo-import/main.sh
     ~/.bin/deamons/screenshots-rename/main.sh: deamons/screenshots-rename/main.sh
     ~/.bin/deamons/screenshots-rename/rename.sh: deamons/screenshots-rename/rename.sh
     ~/.bin/deamons/screenrecording-rename/main.sh: deamons/screenrecording-rename/main.sh

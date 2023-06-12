@@ -18,12 +18,12 @@ cd "$(dirname "$file")"
 old_filename="$(basename "$file")"
 
 # Exit on files not in proper format
-if printf '%s\n' "$old_filename" | grep -vE '^[a-zA-Z]+ [0-9\-]+ at [0-9\.]+\.[a-zA-Z0-9]+$' >/dev/null; then
+if printf '%s\n' "$old_filename" | grep -vE '^.+ [0-9\-]+ at [0-9\.]+\.[a-zA-Z0-9]+$' >/dev/null; then
     echo "exit $old_filename"
     exit 0
 fi
 
-date="$(printf '%s\n' "$(basename "$file")" | sed -E 's~^[a-zA-Z]+ ([0-9]{4})-([0-9]{2})-([0-9]{2}) at ([0-9]{2})\.([0-9]{2})\.([0-9]{2})( \([0-9]+\))?\.[a-zA-Z0-9]+$~\1-\2-\3_\4-\5-\6~')"
+date="$(printf '%s\n' "$(basename "$file")" | sed -E 's~^.+ ([0-9]{4})-([0-9]{2})-([0-9]{2}) at ([0-9]{2})\.([0-9]{2})\.([0-9]{2})( \([0-9]+\))?\.[a-zA-Z0-9]+$~\1-\2-\3_\4-\5-\6~')"
 extension="$(printf '%s\n' "$(basename "$file")" | sed -E 's~^.+\.([a-zA-Z0-9]+)$~\1~')"
 new_filename="$date.$extension"
 
