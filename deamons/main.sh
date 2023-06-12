@@ -1,7 +1,7 @@
 #!/bin/sh
 set -euf
 
-cd "$(dirname $0)"
+cd "$(dirname "$0")"
 mkdir -p "$HOME/.log"
 
 echo "$PWD"
