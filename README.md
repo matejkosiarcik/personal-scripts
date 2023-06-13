@@ -4,6 +4,10 @@
 
 <!-- toc -->
 
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [License](#license)
+
 <!-- tocstop -->
 
 ## Introduction
