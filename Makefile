@@ -9,7 +9,7 @@ PROJECT_DIR := $(abspath $(dir $(MAKEFILE_LIST)))
 
 .DEFAULT: all
 .PHONY: all
-all: bootstrap install
+all: clean bootstrap install
 
 .PHONY: bootstrap
 bootstrap:
@@ -34,3 +34,7 @@ system-setup:
 dotbot: export PATH := $(PROJECT_DIR)/venv/bin:$(PATH)
 dotbot:
 	dotbot -c install.conf.yaml
+
+.PHONY: clean
+clean:
+	rm -rf venv

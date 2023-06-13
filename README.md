@@ -36,6 +36,12 @@ Install project system-wide:
 make install
 ```
 
+Or just run everything mentioned (and more):
+
+```bash
+make
+```
+
 ## License
 
 This project is licensed under the MIT License, see
