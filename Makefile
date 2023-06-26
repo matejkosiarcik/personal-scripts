@@ -12,6 +12,7 @@ PROJECT_DIR := $(abspath $(dir $(MAKEFILE_LIST)))
 all: clean bootstrap install
 
 .PHONY: bootstrap
+bootstrap: export PATH := $(PROJECT_DIR)/venv/bin:$(PATH)
 bootstrap:
 	# check if virtual environment exists or create it
 	[ -n "$${VIRTUAL_ENV+x}" ] || [ -d venv ] \
