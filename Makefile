@@ -34,7 +34,7 @@ system-setup:
 .PHONY: dotbot
 dotbot: export PATH := $(PROJECT_DIR)/venv/bin:$(PATH)
 dotbot:
-	dotbot -c install.conf.yaml
+	dotbot -c install.conf.yml
 
 .PHONY: clean
 clean:
