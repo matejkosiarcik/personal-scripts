@@ -15,7 +15,7 @@
 This repository consists of a few main subdirectories:
 
 | Directory              | Purpose                                                                               |
-| ---------------------- | ------------------------------------------------------------------------------------- |
+|------------------------|---------------------------------------------------------------------------------------|
 | `scripts/`             | primary scripts (added into _PATH_)                                                   |
 | `cron/`                | scripts executed by cron (not added to _PATH_)                                        |
 | `deamons/`             | scripts executed automatically on system start and kept running (not added to _PATH_) |
@@ -23,7 +23,7 @@ This repository consists of a few main subdirectories:
 
 ## Installation
 
-You probably don't want to actually install all my scripts...
+You probably don't want to actually install all my scripts…
 So this section is mostly for my future self :\) .
 
 Install project dependencies:

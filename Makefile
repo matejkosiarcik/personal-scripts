@@ -12,7 +12,6 @@ PROJECT_DIR := $(abspath $(dir $(MAKEFILE_LIST)))
 all: clean bootstrap install
 
 .PHONY: bootstrap
-bootstrap: export PATH := $(PROJECT_DIR)/venv/bin:$(PATH)
 bootstrap:
 	# check if virtual environment exists or create it
 	[ -n "$${VIRTUAL_ENV+x}" ] || [ -d venv ] \
@@ -22,7 +21,8 @@ bootstrap:
 		|| mkvirtualenv venv
 
 	# install dependencies
-	pip install --requirement requirements.txt
+	PATH="$(PROJECT_DIR)/venv/bin:$(PATH)" \
+		pip install --requirement requirements.txt
 
 .PHONY: install
 install: system-setup dotbot
@@ -32,9 +32,9 @@ system-setup:
 	sh setup/system-dependencies/system-setup.sh
 
 .PHONY: dotbot
-dotbot: export PATH := $(PROJECT_DIR)/venv/bin:$(PATH)
 dotbot:
-	dotbot -c install.conf.yml
+	PATH="$(PROJECT_DIR)/venv/bin:$(PATH)" \
+		dotbot -c install.conf.yml
 
 .PHONY: clean
 clean:
