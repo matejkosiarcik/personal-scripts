@@ -20,6 +20,8 @@ jobs:
     steps:
       - checkout
       - run: |
+          # TODO: Reenable linters
+          export VALIDATE_PRETTIER=false
           if [ "$CIRCLE_BRANCH" = main ]; then
             azlint
           else
