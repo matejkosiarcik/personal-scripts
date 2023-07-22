@@ -4,7 +4,7 @@ MAKEFLAGS += --warn-undefined-variables
 SHELL := /bin/sh  # for compatibility (mainly with redhat distros)
 .SHELLFLAGS := -ec
 PROJECT_DIR := $(abspath $(dir $(MAKEFILE_LIST)))
-PATH="$(PROJECT_DIR)/venv/bin:$(PATH)"
+PATH := $(PROJECT_DIR)/venv/bin:$(PATH)
 
 .POSIX:
 
@@ -15,7 +15,8 @@ all: clean bootstrap install
 .PHONY: bootstrap
 bootstrap:
 	# check if virtual environment exists or create it
-	[ -n "$${VIRTUAL_ENV+x}" ] || [ -d venv ] \
+	[ -n "$${VIRTUAL_ENV+x}" ] || \
+		[ -d venv ] \
 		|| python3 -m venv venv \
 		|| python -m venv venv \
 		|| virtualenv venv \
