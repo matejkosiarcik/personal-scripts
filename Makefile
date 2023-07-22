@@ -25,13 +25,6 @@ bootstrap:
 	# install dependencies
 	pip install --requirement requirements.txt
 
-.PHONY: install
-install: system-setup dotbot
-
-.PHONY: system-setup
-system-setup:
-	sh setup/system-dependencies/system-setup.sh
-
 .PHONY: dotbot
 dotbot:
 	dotbot -c install.conf.yml
