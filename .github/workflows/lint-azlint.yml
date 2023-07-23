@@ -13,7 +13,7 @@ jobs:
     name: AZLint
     runs-on: ubuntu-latest
     container:
-      image: matejkosiarcik/azlint:0.6.5
+      image: matejkosiarcik/azlint:0.6.7
       options: --user root
     steps:
       - name: Checkout
@@ -23,8 +23,6 @@ jobs:
 
       - name: Run AZLint
         run: |
-          # TODO: Remove overrides
-          export VALIDATE_PRETTIER=false
           if [ "$GITHUB_REF_NAME" = main ]; then
             azlint
           else
