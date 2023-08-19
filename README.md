@@ -35,7 +35,7 @@ make bootstrap
 Install project system-wide:
 
 ```bash
-sh install.sh
+make install
 ```
 
 Or just run everything mentioned (and more):

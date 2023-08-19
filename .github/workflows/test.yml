@@ -25,4 +25,4 @@ jobs:
           python-version: 3.x
 
       - run: make bootstrap
-      - run: sh install.sh
+      - run: make install
