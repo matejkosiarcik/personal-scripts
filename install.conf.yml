@@ -7,18 +7,15 @@
       force: true
       recursive: true
 
-- shell:
-    - description: PreSetup
-      command: sh setup/pre-setup.sh
-      stdin: true
-      stdout: true
-
 - clean:
     - "~/.bin/scripts"
     - "~/.bin/cron"
     - "~/.bin/deamons"
 
 - link:
+    # scripts
+    ~/.bin/dependencies/requirements.txt: dependencies/requirements.txt
+
     # scripts
     ~/.bin/scripts/photo-exif-rename: scripts/photo-exif-rename.sh
 
@@ -30,4 +27,8 @@
     ~/.bin/deamons/screenrecording-rename/main.sh: deamons/screenrecording-rename/main.sh
     ~/.bin/deamons/screenrecording-rename/rename.sh: deamons/screenrecording-rename/rename.sh
 
-    # cron
+- shell:
+    - description: post-install
+      command: sh setup/post-install.sh
+      stdin: true
+      stdout: true

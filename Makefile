@@ -14,7 +14,7 @@ all: clean bootstrap install
 
 .PHONY: bootstrap
 bootstrap:
-	# check if virtual environment exists or create it
+	# Check if virtual environment exists or create it
 	[ -n "$${VIRTUAL_ENV+x}" ] || \
 		[ -d venv ] \
 		|| python3 -m venv venv \
@@ -22,13 +22,20 @@ bootstrap:
 		|| virtualenv venv \
 		|| mkvirtualenv venv
 
-	# install dependencies
-	pip install --requirement requirements.txt
+	# Install project dependencies
+	python3 -m pip install --requirement requirements.txt
 
-.PHONY: dotbot
-dotbot:
+	# Install system dependencies
+	rm -rf dependencies/venv
+	cd dependencies && \
+		python3 -m venv venv && \
+		PATH="$$PWD/venv/bin:$$PATH" python3 -m pip install --requirement requirements.txt
+
+.PHONY: install
+install:
 	dotbot -c install.conf.yml
 
 .PHONY: clean
 clean:
 	rm -rf venv
+	rm -rf dependencies/venv
