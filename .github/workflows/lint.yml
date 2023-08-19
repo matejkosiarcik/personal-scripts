@@ -9,6 +9,43 @@ on:
   pull_request:
 
 jobs:
+  azlint:
+    name: AZLint
+    runs-on: ubuntu-latest
+    container:
+      image: matejkosiarcik/azlint:0.6.7
+      options: --user root
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.3
+        with:
+          fetch-depth: 0 # Full git history is needed to get a proper list of changed files
+
+      - name: Run AZLint
+        run: |
+          if [ "$GITHUB_REF_NAME" = main ]; then
+            azlint
+          else
+            azlint # --only-changed # TODO: Fix
+          fi
+
+  mega-linter:
+    name: MegaLinter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.3
+        with:
+          fetch-depth: 0 # Full git history is needed to get a proper list of changed files
+
+      - name: Run MegaLinter
+        uses: oxsecurity/megalinter@v7.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+          DEFAULT_BRANCH: main
+          MEGALINTER_CONFIG: .config/.mega-linter.yml
+
   super-linter:
     name: SuperLinter
     runs-on: ubuntu-latest
@@ -23,7 +60,7 @@ jobs:
         env:
           # global settings
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+          # VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
           DEFAULT_BRANCH: main
           LINTER_RULES_PATH: .config/
 
@@ -37,6 +74,7 @@ jobs:
           VALIDATE_TYPESCRIPT_STANDARD: false
           VALIDATE_RUST_2015: false
           VALIDATE_RUST_CLIPPY: false # somehow fails the compilation
+          VALIDATE_DOCKERFILE_HADOLINT: false # Incorrectly tries to lint .dockerfilelintrc
 
           # config files
           DOCKERFILE_HADOLINT_FILE_NAME: .hadolint.yaml
