@@ -2,8 +2,7 @@
 set -euf
 
 cd "$(dirname "$0")"
-project_root="$(dirname "$(dirname "$PWD")")"
-PATH="$PATH:/opt/homebrew/bin:$project_root/dependencies/venv/bin"
+PATH="$PATH:/opt/homebrew/bin:$PWD/venv/bin"
 
 # Set [and create] target directory
 watchdir="$HOME/Movies/Screenrecording"

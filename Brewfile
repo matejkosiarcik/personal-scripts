@@ -4,3 +4,4 @@ brew "python"
 
 # Runtime dependencies
 brew "imagemagick"
+brew "exitftool"
