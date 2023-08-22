@@ -7,7 +7,7 @@
     "moduleResolution": "NodeNext",
 
     // NOTE: Too many false positives
-    "noUncheckedIndexedAccess": false,
+    "noUncheckedIndexedAccess": false
   },
   "include": [
     "src"
