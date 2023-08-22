@@ -2,7 +2,8 @@
 set -euf
 
 cd "$(dirname "$0")"
-PATH="$PATH:/opt/homebrew/bin:$PWD/venv/bin"
+venvpath="$(dirname "$(readlink 'main.sh')")/venv/bin"
+PATH="$PATH:/opt/homebrew/bin:$venvpath"
 
 # Set [and create] target directory
 watchdir="$HOME/Movies/Screenrecording"

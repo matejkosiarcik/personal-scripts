@@ -2,8 +2,9 @@
 set -euf
 
 cd "$(dirname "$0")"
-project_root="$(dirname "$(dirname "$PWD")")"
-PATH="$PATH:/opt/homebrew/bin:$PWD/venv/bin:$project_root/scripts"
+venvpath="$(dirname "$(readlink 'main.sh')")/venv/bin"
+scriptspath="$(dirname "$(dirname "$PWD")")"
+PATH="$PATH:/opt/homebrew/bin:$venvpath:$scriptspath"
 
 # Set [and create] target directory
 watchdir="$HOME/Pictures/Import"
