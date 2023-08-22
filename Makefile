@@ -10,10 +10,10 @@ PATH := $(PROJECT_DIR)/venv/bin:$(PATH)
 
 .DEFAULT: all
 .PHONY: all
-all: clean bootstrap install
+all: clean bootstrap build install
 
 .PHONY: bootstrap
-bootstrap:
+bootstrap:`
 	# Check if virtual environment exists or create it
 	[ -n "$${VIRTUAL_ENV+x}" ] || \
 		[ -d venv ] \
@@ -31,11 +31,17 @@ bootstrap:
 		python3 -m venv venv && \
 		PATH="$$PWD/venv/bin:$$PATH" python3 -m pip install --requirement requirements.txt
 
+.PHONY: build
+build:
+	npm --prefix scripts/photos-to-pdf run build
+
 .PHONY: install
-install:
+install: build
 	dotbot -c install.conf.yml
 
 .PHONY: clean
 clean:
 	rm -rf venv
 	rm -rf dependencies/venv
+	rm -rf scripts/photos-to-pdf/node_modules
+	rm -rf scripts/photos-to-pdf/dist
