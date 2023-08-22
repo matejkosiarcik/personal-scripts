@@ -25,4 +25,5 @@ jobs:
           python-version: 3.x
 
       - run: make bootstrap
+      - run: make build
       - run: make install
