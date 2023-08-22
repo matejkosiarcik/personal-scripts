@@ -38,7 +38,7 @@ bootstrap:
 	rm -f "$$tmpfile"
 
 	# NodeJS dependencies
-	parallel npm install --no-save --no-progress --no-audit --quiet --prefix ::: scripts/photos-to-pdf
+	npm install --no-save --no-progress --no-audit --quiet --prefix scripts/photos-to-pdf
 
 .PHONY: build
 build:
