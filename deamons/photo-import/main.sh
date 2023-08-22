@@ -3,7 +3,7 @@ set -euf
 
 cd "$(dirname "$0")"
 venvpath="$(dirname "$(readlink 'main.sh')")/venv/bin"
-scriptspath="$(dirname "$(dirname "$PWD")")"
+scriptspath="$(dirname "$(dirname "$PWD")")/scripts"
 PATH="$PATH:/opt/homebrew/bin:$venvpath:$scriptspath"
 
 # Set [and create] target directory
