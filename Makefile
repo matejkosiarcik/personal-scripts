@@ -38,7 +38,7 @@ build:
 	npm --prefix scripts/photos-to-pdf run build
 
 .PHONY: install
-install: build
+install:
 	dotbot -c install.conf.yml
 
 .PHONY: clean
