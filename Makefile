@@ -13,7 +13,7 @@ PATH := $(PROJECT_DIR)/venv/bin:$(PATH)
 all: clean bootstrap build install
 
 .PHONY: bootstrap
-bootstrap:`
+bootstrap:
 	# Check if virtual environment exists or create it
 	[ -n "$${VIRTUAL_ENV+x}" ] || \
 		[ -d venv ] \
@@ -30,6 +30,8 @@ bootstrap:`
 	cd dependencies && \
 		python3 -m venv venv && \
 		PATH="$$PWD/venv/bin:$$PATH" python3 -m pip install --requirement requirements.txt
+
+	parallel npm install --no-save --no-progress --no-audit --quiet --prefix ::: scripts/photos-to-pdf
 
 .PHONY: build
 build:
