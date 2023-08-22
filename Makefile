@@ -26,11 +26,11 @@ bootstrap:
 	python3 -m pip install --requirement requirements.txt
 
 	# Python dependencies
-	parallel python3 -m venv ::: deamons/photo-import/venv deamons/screenrecording-rename/venv deamons/screenshots-rename/venv
 	tmpfile="$(shell mktemp)" && \
 	printf 'deamons/photo-import\ndeamons/screenrecording-rename\ndeamons/screenshots-rename\n' >"$$tmpfile" && \
 	while read -r dir; do \
 		cd "$(PROJECT_DIR)/$$dir" && \
+		python3 -m venv venv && \
 		PATH="$$PWD/venv/bin:$(PATH)" \
 		PIP_DISABLE_PIP_VERSION_CHECK=1 \
 			pip install --requirement requirements.txt --quiet --upgrade && \
