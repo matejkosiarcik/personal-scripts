@@ -2,6 +2,8 @@
 set -euf
 
 cd "$(dirname "$0")"
+PATH="$PATH:/opt/homebrew/bin"
+
 mkdir -p "$HOME/.log"
 
 mkdir -p "$HOME/Pictures/Import - Raw"
