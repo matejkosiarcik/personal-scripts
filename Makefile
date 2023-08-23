@@ -7,6 +7,7 @@ PROJECT_DIR := $(abspath $(dir $(MAKEFILE_LIST)))
 PATH := $(PROJECT_DIR)/venv/bin:$(PATH)
 
 .POSIX:
+.SILENT:
 
 .DEFAULT: all
 .PHONY: all
@@ -27,7 +28,7 @@ bootstrap:
 
 	# Python dependencies
 	tmpfile="$(shell mktemp)" && \
-	printf 'deamons/photo-import\ndeamons/screenrecording-rename\ndeamons/screenshots-rename\n' >"$$tmpfile" && \
+	printf 'deamons/photo-import\ndeamons/screenrecording-rename\ndeamons/screenshots-rename\nscripts/project-update\n' >"$$tmpfile" && \
 	while read -r dir; do \
 		cd "$(PROJECT_DIR)/$$dir" && \
 		python3 -m venv venv && \
@@ -39,6 +40,7 @@ bootstrap:
 
 	# NodeJS dependencies
 	npm install --no-save --no-progress --no-audit --quiet --prefix scripts/photos-to-pdf
+	npm install --no-save --no-progress --no-audit --quiet --prefix scripts/project-update
 
 .PHONY: build
 build:

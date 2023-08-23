@@ -1,4 +1,5 @@
 # Programming languages
+cask "docker"
 brew "node"
 brew "python"
 
