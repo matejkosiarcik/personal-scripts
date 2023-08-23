@@ -33,7 +33,7 @@ bootstrap:
 		python3 -m venv venv && \
 		PATH="$$PWD/venv/bin:$(PATH)" \
 		PIP_DISABLE_PIP_VERSION_CHECK=1 \
-			pip install --requirement requirements.txt --quiet --upgrade && \
+			python3 -m pip install --requirement requirements.txt --quiet --upgrade && \
 	true; done <"$$tmpfile" && \
 	rm -f "$$tmpfile"
 
