@@ -5,8 +5,6 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "NodeNext",
-
-    // NOTE: Too many false positives
     "noUncheckedIndexedAccess": false
   },
   "include": [
