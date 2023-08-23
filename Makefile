@@ -31,7 +31,7 @@ bootstrap:
 	while read -r dir; do \
 		cd "$(PROJECT_DIR)/$$dir" && \
 		python3 -m venv venv && \
-		PATH="$$PWD/venv/bin:$(PATH)" \
+		PATH="$$PWD/venv/bin:$$PATH" \
 		PIP_DISABLE_PIP_VERSION_CHECK=1 \
 			python3 -m pip install --requirement requirements.txt --quiet --upgrade && \
 	true; done <"$$tmpfile" && \
