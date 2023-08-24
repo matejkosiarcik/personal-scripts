@@ -24,23 +24,25 @@ bootstrap:
 		|| mkvirtualenv venv
 
 	# Install project dependencies
-	python3 -m pip install --requirement requirements.txt
+	PATH="$$PWD/venv/bin:$$PATH" \
+		python3 -m pip install --requirement requirements.txt
 
 	# Python dependencies
-	tmpfile="$(shell mktemp)" && \
-	printf 'deamons/photo-import\ndeamons/screenrecording-rename\ndeamons/screenshots-rename\nscripts/project-update\n' >"$$tmpfile" && \
+	printf '%s\n%s\n%s\n%s\n' deamons/photo-import deamons/screenrecording-rename deamons/screenshots-rename scripts/project-update | \
 	while read -r dir; do \
 		cd "$(PROJECT_DIR)/$$dir" && \
 		python3 -m venv venv && \
 		PATH="$$PWD/venv/bin:$$PATH" \
 		PIP_DISABLE_PIP_VERSION_CHECK=1 \
 			python3 -m pip install --requirement requirements.txt --quiet --upgrade && \
-	true; done <"$$tmpfile" && \
-	rm -f "$$tmpfile"
+	true; done
 
 	# NodeJS dependencies
-	npm install --no-save --no-progress --no-audit --quiet --prefix scripts/photos-to-pdf
-	npm install --no-save --no-progress --no-audit --quiet --prefix scripts/project-update
+	printf '%s\n%s\n' scripts/photos-to-pdf scripts/project-update | \
+	while read -r dir; do \
+		cd "$(PROJECT_DIR)/$$dir" && \
+		npm install --no-save --no-progress --no-audit --quiet && \
+	true; done
 
 .PHONY: build
 build:
