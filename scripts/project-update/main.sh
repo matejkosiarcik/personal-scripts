@@ -56,7 +56,23 @@ glob 'package.json' | while read -r file; do
     if [ "$target" != 'lock' ]; then
         ncu --cwd "$(dirname "$file")" --target "$ncu_target" --upgrade # package.json
     fi
-    sh "$subprojectpath/regenerate-package-lock.sh"
+
+    directory="$(dirname "$file")"
+    dirname="$(basename "$directory")"
+    echo "package.json dirname: $dirname"
+    tmpdir="$(mktemp -d)"
+    cp "$directory/package.json" "$tmpdir/package.json"
+    docker run --rm \
+        --volume "$tmpdir:/src/$dirname" \
+        --volume "$HOME/.npmrc:/src/$dirname.npmrc:ro" \
+        --env CYPRESS_INSTALL_BINARY=0 \
+        --env PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+        --env PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 \
+        --env NODE_OPTIONS='--dns-result-order=ipv4first' \
+        node:latest \
+        sh -c "cd /src/$dirname && npm install --ignore-scripts && npm dedupe"
+    mv "$tmpdir/package-lock.json" "$directory/package-lock.json"
+    rm -rf "$tmpdir"
 done
 
 # Python
