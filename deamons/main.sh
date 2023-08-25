@@ -2,9 +2,11 @@
 set -euf
 
 cd "$(dirname "$0")"
+PATH="$PATH:/opt/homebrew/bin"
+
 mkdir -p "$HOME/.log"
 
 mkdir -p "$HOME/Pictures/Import - Raw"
-nohup sh photo-import/main.sh >>"$HOME/.log/photo-import.stdout.txt" 2>>"$HOME/.log/photo-import.stderr.txt" &
-nohup sh screenrecording-rename/main.sh >>"$HOME/.log/screenrecording-rename.stdout.txt" 2>>"$HOME/.log/screenrecording-rename.stderr.txt" &
-nohup sh screenshots-rename/main.sh >>"$HOME/.log/screenshots-rename.stdout.txt" 2>>"$HOME/.log/screenshots-rename.stderr.txt" &
+nohup sh photo-import/main.sh 2>&1 | ts '%Y-%m-%d %H:%M:%.S |' >>"$HOME/.log/photo-import.txt" &
+nohup sh screenrecording-rename/main.sh 2>&1 | ts '%Y-%m-%d %H:%M:%.S |' >>"$HOME/.log/screenrecording-rename.txt" &
+nohup sh screenshots-rename/main.sh 2>&1 | ts '%Y-%m-%d %H:%M:%.S |' >>"$HOME/.log/screenshots-rename.txt" &

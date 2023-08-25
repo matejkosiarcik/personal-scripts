@@ -2,8 +2,8 @@
 set -euf
 
 cd "$(dirname "$0")"
-project_root="$(dirname "$(dirname "$PWD")")"
-PATH="$PATH:/opt/homebrew/bin:$project_root/dependencies/venv/bin"
+venvpath="$(dirname "$(readlink 'main.sh')")/venv/bin"
+PATH="$PATH:/opt/homebrew/bin:$venvpath"
 
 # Set [and create] target directory
 watchdir="$HOME/Pictures/Screenshots"
