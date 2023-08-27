@@ -33,16 +33,22 @@ Install project dependencies:
 make bootstrap
 ```
 
+Build project:
+
+```bash
+make build
+```
+
 Install project system-wide:
 
 ```bash
 make install
 ```
 
-Or just run everything mentioned (and more):
+Or run everything at once:
 
 ```bash
-make
+make all install
 ```
 
 ## License
