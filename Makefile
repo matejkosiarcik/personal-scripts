@@ -11,7 +11,7 @@ PATH := $(PROJECT_DIR)/venv/bin:$(PATH)
 
 .DEFAULT: all
 .PHONY: all
-all: clean bootstrap build install
+all: clean bootstrap build
 
 .PHONY: bootstrap
 bootstrap:
