@@ -9,7 +9,8 @@ print_help() {
 }
 
 subprojectpath="$(dirname "$(readlink "$0")")"
-PATH="$PATH:/opt/homebrew/bin:$subprojectpath/venv/bin:$subprojectpath/node_modules/.bin"
+PATH="$subprojectpath/venv/bin:$subprojectpath/node_modules/.bin:/opt/homebrew/bin:$PATH"
+export PATH
 
 target='major'
 while getopts "h?t:" o; do
