@@ -60,3 +60,5 @@ clean:
 	rm -rf deamons/screenshots-rename/venv
 	rm -rf scripts/photos-to-pdf/node_modules
 	rm -rf scripts/photos-to-pdf/dist
+	rm -rf scripts/project-update/node_modules
+	rm -rf scripts/project-update/venv
