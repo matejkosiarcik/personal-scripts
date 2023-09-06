@@ -69,8 +69,9 @@ glob 'package.json' | while read -r file; do
         --env PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
         --env PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 \
         --env NODE_OPTIONS='--dns-result-order=ipv4first' \
+        --entrypoint /bin/sh \
         node:latest \
-        sh -c "cd /src/$dirname && npm install --ignore-scripts && npm dedupe"
+        -c "cd /src/$dirname && npm install --ignore-scripts && npm dedupe"
     mv "$tmpdir/package-lock.json" "$directory/package-lock.json"
     rm -rf "$tmpdir"
 done
