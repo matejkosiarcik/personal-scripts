@@ -59,8 +59,7 @@ glob 'package.json' | while read -r file; do
     fi
 
     directory="$(dirname "$file")"
-    dirname="$(basename "$directory")"
-    printf 'package.json dirname: %s' "$dirname"
+    dirname="$(cd "$directory" >/dev/null 2>&1 && basename "$PWD")"
     tmpdir="$(mktemp -d)"
     cp "$directory/package.json" "$tmpdir/package.json"
     docker run --rm \
