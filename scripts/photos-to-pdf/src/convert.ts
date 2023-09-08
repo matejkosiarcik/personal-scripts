@@ -48,7 +48,7 @@ import { execa } from 'execa';
 
     const tmpFiles = await Promise.all(input.map(async (file) => {
         const tmpFile = path.join(tmpDir, path.basename(file, path.extname(file))) + '.jpg';
-        await execa('magick', ['convert', file, '-quality', '90', '-geometry', `${targetResolution.width}x${targetResolution.height}`, tmpFile]);
+        await execa('magick', ['convert', file, '-quality', '90', '-resize', `${targetResolution.width}x${targetResolution.height}!`, tmpFile]);
         return tmpFile;
     }));
 
