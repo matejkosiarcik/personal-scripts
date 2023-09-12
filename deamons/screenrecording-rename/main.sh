@@ -22,6 +22,6 @@ watchmedo shell-command "$watchdir" \
     --wait \
     --quiet \
     --ignore-directories \
-    --patterns '*.mov' \
+    --patterns '*.mov;*.mp4' \
     --command 'if [ "$watch_event_type" = created ] && [ "$watch_object" = file ]; then sh rename.sh "$watch_src_path"; fi'
 # NOTE: We could also listen for "move" events, but it would be really easy to fall into infinite loop
