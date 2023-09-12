@@ -13,7 +13,7 @@ fi
 
 # Rename existing files
 tmpfile="$(mktemp)"
-find "$watchdir" -maxdepth 1 -type f -iname '*.mov' -print0 >"$tmpfile"
+find "$watchdir" -maxdepth 1 -type f \( -iname '*.mov' -or -iname '*.mp4' \) -print0 >"$tmpfile"
 xargs -0 -n1 sh rename.sh <"$tmpfile"
 rm -f "$tmpfile"
 
