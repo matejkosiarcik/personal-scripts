@@ -1,9 +1,13 @@
 #!/bin/sh
 set -euf
 
-cd "$(dirname "$0")"
-venvpath="$(dirname "$(readlink 'main.sh')")/venv/bin"
-PATH="$PATH:/opt/homebrew/bin:$venvpath"
+source_dir="$(dirname "$(readlink "$0")")"
+export source_dir
+
+PATH="$source_dir/python/bin:/opt/homebrew/bin:$PATH"
+export PATH
+PYTHONPATH="$source_dir/python"
+export PYTHONPATH
 
 # Set [and create] target directory
 watchdir="$HOME/Movies/Screenrecording"
@@ -14,7 +18,7 @@ fi
 # Rename existing files
 tmpfile="$(mktemp)"
 find "$watchdir" -maxdepth 1 -type f \( -iname '*.mov' -or -iname '*.mp4' \) -print0 >"$tmpfile"
-xargs -0 -n1 sh rename.sh <"$tmpfile"
+xargs -0 -n1 sh "$source_dir/rename.sh" <"$tmpfile"
 rm -f "$tmpfile"
 
 # Watch for changes and rename newly added files
@@ -23,5 +27,5 @@ watchmedo shell-command "$watchdir" \
     --quiet \
     --ignore-directories \
     --patterns '*.mov;*.mp4' \
-    --command 'if [ "$watch_event_type" = created ] && [ "$watch_object" = file ]; then sh rename.sh "$watch_src_path"; fi'
+    --command 'if [ "$watch_event_type" = created ] && [ "$watch_object" = file ]; then sh "$source_dir/rename.sh" "$watch_src_path"; fi'
 # NOTE: We could also listen for "move" events, but it would be really easy to fall into infinite loop

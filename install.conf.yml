@@ -5,24 +5,40 @@
       force: true
     clean:
       force: true
-      recursive: true
 
-- clean:
-    - "~/.bin/scripts"
-    - "~/.bin/cron"
-    - "~/.bin/deamons"
+- shell:
+    - description: PreSetup
+      command: sh 'utils/preinstall.sh'
+      stdin: true
+      stdout: true
 
 - link:
     # scripts
-    ~/.bin/scripts/photo-exif-rename: scripts/photo-exif-rename.sh
-    ~/.bin/scripts/photos-to-pdf: scripts/photos-to-pdf/dist/convert.js
-    ~/.bin/scripts/photos-to-pdf-analyze: scripts/photos-to-pdf/dist/analyze.js
-    ~/.bin/scripts/project-update: scripts/project-update/main.sh
+    ~/.matejkosiarcik/scripts/scripts/dir2sha: scripts/dir2sha.py
+    ~/.matejkosiarcik/scripts/scripts/convert2pdf: scripts/convert2pdf/dist/convert.js
+    ~/.matejkosiarcik/scripts/scripts/photo-exif-rename: scripts/photo-exif-rename.sh
+    ~/.matejkosiarcik/scripts/scripts/project-update: scripts/project-update/main.sh
+    ~/.matejkosiarcik/scripts/scripts/system-update: scripts/system-update.sh
 
-    # deamons
-    ~/.bin/deamons/main.sh: deamons/main.sh
-    ~/.bin/deamons/photo-import/main.sh: deamons/photo-import/main.sh
-    ~/.bin/deamons/screenshots-rename/main.sh: deamons/screenshots-rename/main.sh
-    ~/.bin/deamons/screenshots-rename/rename.sh: deamons/screenshots-rename/rename.sh
-    ~/.bin/deamons/screenrecording-rename/main.sh: deamons/screenrecording-rename/main.sh
-    ~/.bin/deamons/screenrecording-rename/rename.sh: deamons/screenrecording-rename/rename.sh
+    # old scripts
+    # ~/.matejkosiarcik/scripts/backup-packages: scripts/backup/backup-packages.sh
+    # ~/.matejkosiarcik/scripts/check-video: scripts/backup/check-video.sh
+    # ~/.matejkosiarcik/scripts/dir-clean: scripts/backup/dir-clean.sh
+    # ~/.matejkosiarcik/scripts/dirs2sha: scripts/backup/dirs2sha.sh
+    # ~/.matejkosiarcik/scripts/exiff: scripts/backup/exiff.sh
+    # ~/.matejkosiarcik/scripts/exifd: scripts/backup/exifd.sh
+    # ~/.matejkosiarcik/scripts/lsdir: scripts/backup/lsdir.py
+    # ~/.matejkosiarcik/scripts/newterm: scripts/backup/newterm.scpt
+    # ~/.matejkosiarcik/scripts/project-update: scripts/backup/project-update.sh
+    # ~/.matejkosiarcik/scripts/relock: scripts/backup/relock.sh
+    # ~/.matejkosiarcik/scripts/report-tabs: scripts/backup/report-tabs.sh
+    # ~/.matejkosiarcik/scripts/ulozto-autodownload: scripts/backup/ulozto-autodownload.sh
+    # ~/.matejkosiarcik/scripts/gitup: scripts/git/backup/gitup.sh
+    # ~/.matejkosiarcik/scripts/gitmon: scripts/backup/gitmon.sh
+
+    # background deamons
+    ~/.matejkosiarcik/deamons/main.sh: deamons/main.sh
+    ~/.matejkosiarcik/deamons/notes-attachments-import/main.sh: deamons/notes-attachments-import/main.sh
+    ~/.matejkosiarcik/deamons/photo-import/main.sh: deamons/photo-import/main.sh
+    ~/.matejkosiarcik/deamons/screenshots-rename/main.sh: deamons/screenshots-rename/main.sh
+    ~/.matejkosiarcik/deamons/screenrecording-rename/main.sh: deamons/screenrecording-rename/main.sh
