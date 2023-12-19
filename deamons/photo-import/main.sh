@@ -1,10 +1,13 @@
 #!/bin/sh
 set -euf
 
-cd "$(dirname "$0")"
-venvpath="$(dirname "$(readlink 'main.sh')")/venv/bin"
-scriptspath="$(dirname "$(dirname "$PWD")")/scripts"
-PATH="$PATH:/opt/homebrew/bin:$venvpath:$scriptspath"
+source_dir="$(dirname "$(readlink "$0")")"
+export source_dir
+
+PATH="$source_dir/python/bin:/opt/homebrew/bin:$HOME/.bin/scripts:$PATH"
+export PATH
+PYTHONPATH="$source_dir/python"
+export PYTHONPATH
 
 # Set [and create] target directory
 watchdir="$HOME/Pictures/Import"
