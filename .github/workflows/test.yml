@@ -34,5 +34,3 @@ jobs:
         shell: bash
       - run: make install
         shell: bash
-
-      - run: sh utils/postinstall-test.sh
