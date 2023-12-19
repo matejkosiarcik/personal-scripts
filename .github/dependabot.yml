@@ -5,7 +5,7 @@ updates:
     directory: /
     schedule:
       interval: daily
-      time: "02:00"
+      time: "01:00"
       timezone: Europe/Bratislava
     reviewers:
       - matejkosiarcik
@@ -17,7 +17,7 @@ updates:
     directory: /
     schedule:
       interval: daily
-      time: "03:00"
+      time: "01:30"
       timezone: Europe/Bratislava
     reviewers:
       - matejkosiarcik
@@ -26,10 +26,70 @@ updates:
     open-pull-requests-limit: 1
 
   - package-ecosystem: pip
-    directory: /system-dependencies
+    directory: /deamons/notes-attachments-import
     schedule:
       interval: daily
-      time: "04:00"
+      time: "01:30"
+      timezone: Europe/Bratislava
+    reviewers:
+      - matejkosiarcik
+    assignees:
+      - matejkosiarcik
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: pip
+    directory: /deamons/photo-import
+    schedule:
+      interval: daily
+      time: "01:30"
+      timezone: Europe/Bratislava
+    reviewers:
+      - matejkosiarcik
+    assignees:
+      - matejkosiarcik
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: pip
+    directory: /deamons/screenrecording-rename
+    schedule:
+      interval: daily
+      time: "01:30"
+      timezone: Europe/Bratislava
+    reviewers:
+      - matejkosiarcik
+    assignees:
+      - matejkosiarcik
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: pip
+    directory: /deamons/screenshots-rename
+    schedule:
+      interval: daily
+      time: "01:30"
+      timezone: Europe/Bratislava
+    reviewers:
+      - matejkosiarcik
+    assignees:
+      - matejkosiarcik
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: npm
+    directory: /scripts/project-update
+    schedule:
+      interval: daily
+      time: "02:00"
+      timezone: Europe/Bratislava
+    reviewers:
+      - matejkosiarcik
+    assignees:
+      - matejkosiarcik
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: npm
+    directory: /scripts/convert2pdf
+    schedule:
+      interval: daily
+      time: "02:30"
       timezone: Europe/Bratislava
     reviewers:
       - matejkosiarcik
