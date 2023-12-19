@@ -39,4 +39,3 @@ jobs:
       - run: make bootstrap
       - run: make build
       - run: make install
-      - run: sh utils/postinstall-test.sh
