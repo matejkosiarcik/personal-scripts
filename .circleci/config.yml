@@ -9,16 +9,22 @@ workflows:
           matrix:
             parameters:
               image:
-                - debian:11.8
-                - debian:12.4
-                - ubuntu:22.04
-      - install-on-alpine
+                - debian:latest
+                - debian:testing
+                - ubuntu:latest
+                - ubuntu:rolling
+      - install-on-alpine:
+          matrix:
+            parameters:
+              image:
+                - alpine:latest
+                - alpine:edge
       - install-on-fedora:
           matrix:
             parameters:
               image:
-                - fedora:39
-                - fedora:40
+                - fedora:latest
+                - fedora:rawhide
 
 jobs:
   azlint:
@@ -48,8 +54,11 @@ jobs:
       - run: make install
 
   install-on-alpine:
+    parameters:
+      image:
+        type: string
     docker:
-      - image: alpine:3.19.0
+      - image: "<< parameters.image >>"
     steps:
       - checkout
       - run: apk add --no-cache make nodejs npm py3-pip python3
