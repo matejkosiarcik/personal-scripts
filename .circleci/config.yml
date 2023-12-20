@@ -5,13 +5,14 @@ workflows:
   circleci:
     jobs:
       - azlint
-      - install:
+      - install-on-debian-ubuntu:
           matrix:
             parameters:
               image:
                 - debian:11.8
                 - debian:12.4
                 - ubuntu:22.04
+      - install-on-alpine
 
 jobs:
   azlint:
@@ -26,7 +27,7 @@ jobs:
             azlint --only-changed
           fi
 
-  install:
+  install-on-debian-ubuntu:
     parameters:
       image:
         type: string
@@ -36,6 +37,16 @@ jobs:
       - checkout
       - run: apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --yes curl python3 python3-pip python3-venv
       - run: curl -fsSL https://deb.nodesource.com/setup_current.x | bash - && apt-get install -y nodejs
+      - run: make bootstrap
+      - run: make build
+      - run: make install
+
+  install-on-alpine:
+    docker:
+      - image: alpine:3.19.0
+    steps:
+      - checkout
+      - run: apk add --no-cache curl make nodejs npm py3-pip python3
       - run: make bootstrap
       - run: make build
       - run: make install
