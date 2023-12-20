@@ -46,7 +46,7 @@ jobs:
       - image: alpine:3.19.0
     steps:
       - checkout
-      - run: apk add --no-cache curl python3 py3-pip nodejs npm
+      - run: apk add --no-cache curl make nodejs npm py3-pip python3
       - run: make bootstrap
       - run: make build
       - run: make install
