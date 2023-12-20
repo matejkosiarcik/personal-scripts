@@ -5,20 +5,29 @@ workflows:
   circleci:
     jobs:
       - azlint
-      - install-on-debian-ubuntu:
+      - install-1:
           matrix:
             parameters:
               image:
-                - debian:11.8
-                - debian:12.4
-                - ubuntu:22.04
-      - install-on-alpine
-      - install-on-fedora:
+                - debian:latest
+                - debian:testing
+      - install-2:
           matrix:
             parameters:
               image:
-                - fedora:39
-                - fedora:40
+                - ubuntu:latest
+      - install-3:
+          matrix:
+            parameters:
+              image:
+                - alpine:latest
+                - alpine:edge
+      - install-4:
+          matrix:
+            parameters:
+              image:
+                - fedora:latest
+                - fedora:rawhide
 
 jobs:
   azlint:
@@ -33,7 +42,20 @@ jobs:
             azlint --only-changed
           fi
 
-  install-on-debian-ubuntu:
+  install-1: # debian
+    parameters:
+      image:
+        type: string
+    docker:
+      - image: "<< parameters.image >>"
+    steps:
+      - checkout
+      - run: apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --yes nodejs npm python3 python3-pip python3-venv
+      - run: make bootstrap
+      - run: make build
+      - run: make install
+
+  install-2: # ubuntu
     parameters:
       image:
         type: string
@@ -47,9 +69,12 @@ jobs:
       - run: make build
       - run: make install
 
-  install-on-alpine:
+  install-3: # alpine
+    parameters:
+      image:
+        type: string
     docker:
-      - image: alpine:3.19.0
+      - image: "<< parameters.image >>"
     steps:
       - checkout
       - run: apk add --no-cache make nodejs npm py3-pip python3
@@ -57,7 +82,7 @@ jobs:
       - run: make build
       - run: make install
 
-  install-on-fedora:
+  install-4: # fedora
     parameters:
       image:
         type: string
